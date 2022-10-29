@@ -27,10 +27,11 @@ void Lexer::readChar() {
 std::string Lexer::readIdentifier() {
     int start = m_position;
     while (isalpha(static_cast<int>(m_ch))) {
+        std::cout << static_cast<char >(m_ch) << std::endl;
         readChar();
     }
 
-    return m_input.substr(start, m_position);
+    return m_input.substr(start, m_position-start);
 }
 
 Token::TokenType Lexer::lookUpIdentifier(std::string literal) {
@@ -53,7 +54,7 @@ std::string Lexer::readNumber() {
     while (isdigit(static_cast<int>(m_ch))) {
         readChar();
     }
-    return m_input.substr(start, m_position);
+    return m_input.substr(start, m_position-start);
 }
 
 Token Lexer::nextToken() {
