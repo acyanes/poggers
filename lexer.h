@@ -19,7 +19,7 @@ public:
     Token nextToken();
     std::string readIdentifier();
     Token::TokenType lookUpIdentifier(std::string);
-    Token::TokenType skipWhiteSpace();
+    void skipWhiteSpace();
     std::string readNumber();
 };
 

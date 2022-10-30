@@ -11,7 +11,7 @@ Lexer::Lexer(std::string input) {
         m_position = 0;
         m_readPosition = 0;
         this->readChar();
-    };
+}
 
 void Lexer::readChar() {
     if (m_readPosition >= m_input.length()) {
@@ -42,8 +42,7 @@ Token::TokenType Lexer::lookUpIdentifier(std::string literal) {
     return Token::TokenType::IDENT;
 }
 
-Token::TokenType Lexer::skipWhiteSpace() {
-//    while (isspace(static_cast<char>(m_ch)) || (static_cast<char>(m_ch)) == '\n' || (static_cast<char>(m_ch)) == '\r') {
+void Lexer::skipWhiteSpace() {
 while(isspace(static_cast<char>(m_ch))) {
         readChar();
     }
@@ -66,6 +65,48 @@ Token Lexer::nextToken() {
         case '=':
             token = {
                     Token::TokenType::ASSIGN,
+                    token.m_literal = curr,
+            };
+            break;
+        case '+':
+            token = {
+                    Token::TokenType::PLUS,
+                    token.m_literal = curr,
+            };
+            break;
+        case '-':
+            token = {
+                    Token::TokenType::MINUS,
+                    token.m_literal = curr,
+            };
+            break;
+        case '!':
+            token = {
+                    Token::TokenType::BANG,
+                    token.m_literal = curr,
+            };
+            break;
+        case '/':
+            token = {
+                    Token::TokenType::SLASH,
+                    token.m_literal = curr,
+            };
+            break;
+        case '*':
+            token = {
+                    Token::TokenType::ASTERISK,
+                    token.m_literal = curr,
+            };
+            break;
+        case '<':
+            token = {
+                    Token::TokenType::LT,
+                    token.m_literal = curr,
+            };
+            break;
+        case '>':
+            token = {
+                    Token::TokenType::GT,
                     token.m_literal = curr,
             };
             break;
@@ -102,12 +143,6 @@ Token Lexer::nextToken() {
         case ',':
             token = {
                     Token::TokenType::COMMA,
-                    token.m_literal = curr,
-            };
-            break;
-        case '+':
-            token = {
-                    Token::TokenType::PLUS,
                     token.m_literal = curr,
             };
             break;

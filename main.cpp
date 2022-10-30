@@ -3,6 +3,7 @@
 
 int main() {
 //    testNextToken();
-    testNextTokenTwo();
+//    testNextTokenTwo();
+    testNextTokenThree();
     return 0;
 }

@@ -19,6 +19,12 @@ std::ostream& operator<<(std::ostream &out, Token::TokenType &tokenType) {
         case Token::INT:       out << "INT";       break;
         case Token::ASSIGN:    out << "ASSIGN";    break;
         case Token::PLUS:      out << "PLUS";      break;
+        case Token::MINUS:     out << "MINUS";     break;
+        case Token::BANG:      out << "BANG";      break;
+        case Token::ASTERISK:  out << "ASTERISK";  break;
+        case Token::SLASH:     out << "SLASH";     break;
+        case Token::LT:        out << "LT";        break;
+        case Token::GT:        out << "GT";        break;
         case Token::COMMA:     out << "COMMA";     break;
         case Token::SEMICOLON: out << "SEMICOLON"; break;
         case Token::LPAREN:    out << "LPAREN";    break;
