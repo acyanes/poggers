@@ -27,7 +27,6 @@ void Lexer::readChar() {
 std::string Lexer::readIdentifier() {
     int start = m_position;
     while (isalpha(static_cast<int>(m_ch))) {
-        std::cout << static_cast<char >(m_ch) << std::endl;
         readChar();
     }
 
@@ -44,7 +43,8 @@ Token::TokenType Lexer::lookUpIdentifier(std::string literal) {
 }
 
 Token::TokenType Lexer::skipWhiteSpace() {
-    while (isspace(static_cast<char>(m_ch)) || (static_cast<char>(m_ch)) == '\n' || (static_cast<char>(m_ch)) == '\r') {
+//    while (isspace(static_cast<char>(m_ch)) || (static_cast<char>(m_ch)) == '\n' || (static_cast<char>(m_ch)) == '\r') {
+while(isspace(static_cast<char>(m_ch))) {
         readChar();
     }
 }
@@ -66,16 +66,14 @@ Token Lexer::nextToken() {
         case '=':
             token = {
                     Token::TokenType::ASSIGN,
-                    token.m_literal = &curr,
+                    token.m_literal = curr,
             };
             break;
-
         case ';':
             token = {
                     Token::TokenType::SEMICOLON,
                     token.m_literal = curr,
             };
-            std::cout << token.m_literal << std::endl;
             break;
         case '(':
             token = {
@@ -131,7 +129,7 @@ Token Lexer::nextToken() {
                 std::cout << '\n';
                 return token;
 
-            } else if(isdigit(curr)) {
+            } else if (isdigit(curr)) {
                 token.m_tokenType = Token::TokenType::INT;
                 token.m_literal = readNumber();
                 return token;
@@ -140,6 +138,7 @@ Token Lexer::nextToken() {
                         Token::TokenType::ILLEGAL,
                         token.m_literal = curr,
                 };
+                return token;
             }
 
     }

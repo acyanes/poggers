@@ -27,12 +27,14 @@ void testNextToken() {
     for (const Token::TokenTest& t : tests) {
         Token tok = l.nextToken();
         if (tok.m_tokenType != t.expectedToken) {
+            std::cout << "token comparison" << std::endl;
             std::cout << tok.m_tokenType;
             std::cout << " does not match ";
             std::cout << t.expectedToken;
         }
 
         if (tok.m_literal != t.expectedString) {
+            std::cout << "literal comparison" << std::endl;
             std::cout << tok.m_literal + " does not match " + t.expectedString << std::endl;
         }
     }
@@ -95,9 +97,9 @@ void testNextTokenTwo() {
             std::cout << t.expectedToken << std::endl;
         }
 
-//        if (tok.m_literal != t.expectedString) {
-//            std::cout << tok.m_literal + " does not match " + t.expectedString << std::endl;
-//        }
+        if (tok.m_literal != t.expectedString) {
+            std::cout << tok.m_literal + " does not match " + t.expectedString << std::endl;
+        }
     }
 
 }
