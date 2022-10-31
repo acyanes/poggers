@@ -35,7 +35,12 @@ std::string Lexer::readIdentifier() {
 
 Token::TokenType Lexer::lookUpIdentifier(std::string literal) {
     std::unordered_map<std::string, Token::TokenType> map {{"let", Token::TokenType::LET},
-                                                           {"fn", Token::TokenType::FUNCTION}};
+                                                           {"fn", Token::TokenType::FUNCTION},
+                                                           {"true", Token::TokenType::TRUE},
+                                                           {"false", Token::TokenType::FALSE},
+                                                           {"if", Token::TokenType::IF},
+                                                           {"else", Token::TokenType::ELSE},
+                                                           {"return", Token::TokenType::RETURN}};
     if (map.contains(literal)) {
         return map[literal];
     }
@@ -56,6 +61,13 @@ std::string Lexer::readNumber() {
     return m_input.substr(start, m_position-start);
 }
 
+std::byte Lexer::peekChar() {
+    if (m_readPosition > m_input.length()) {
+        return static_cast<std::byte>(0);
+    }
+    return static_cast<std::byte>(m_input[m_readPosition]);
+}
+
 Token Lexer::nextToken() {
     Token token;
     skipWhiteSpace();
@@ -63,10 +75,18 @@ Token Lexer::nextToken() {
 
     switch(curr) {
         case '=':
-            token = {
-                    Token::TokenType::ASSIGN,
-                    token.m_literal = curr,
-            };
+            if (static_cast<char>(peekChar()) == '=') {
+                readChar();
+                token = {
+                        Token::TokenType::EQ,
+                        token.m_literal = "==",
+                };
+            } else {
+                token = {
+                        Token::TokenType::ASSIGN,
+                        token.m_literal = curr,
+                };
+            }
             break;
         case '+':
             token = {
@@ -81,10 +101,20 @@ Token Lexer::nextToken() {
             };
             break;
         case '!':
-            token = {
-                    Token::TokenType::BANG,
-                    token.m_literal = curr,
-            };
+            if (static_cast<char>(peekChar()) == '=') {
+                // then it is !=
+                readChar();
+                token = {
+                        Token::TokenType::NOT_EQ,
+                        token.m_literal = "!=",
+                };
+            } else {
+                token = {
+                        Token::TokenType::BANG,
+                        token.m_literal = curr,
+                };
+            }
+
             break;
         case '/':
             token = {
@@ -156,14 +186,7 @@ Token Lexer::nextToken() {
             if (isalpha(curr)) {
                 token.m_literal = readIdentifier();
                 token.m_tokenType = lookUpIdentifier(token.m_literal);
-                std::cout << "token literal: ";
-                std::cout << token.m_literal << std::endl;
-
-                std::cout << "token type: ";
-                std::cout << token.m_tokenType << std::endl;
-                std::cout << '\n';
                 return token;
-
             } else if (isdigit(curr)) {
                 token.m_tokenType = Token::TokenType::INT;
                 token.m_literal = readNumber();

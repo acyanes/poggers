@@ -21,6 +21,7 @@ public:
     Token::TokenType lookUpIdentifier(std::string);
     void skipWhiteSpace();
     std::string readNumber();
+    std::byte peekChar();
 };
 
 #endif //INTERPRETER_LEXER_H

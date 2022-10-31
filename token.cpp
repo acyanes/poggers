@@ -25,6 +25,8 @@ std::ostream& operator<<(std::ostream &out, Token::TokenType &tokenType) {
         case Token::SLASH:     out << "SLASH";     break;
         case Token::LT:        out << "LT";        break;
         case Token::GT:        out << "GT";        break;
+        case Token::EQ:        out << "EQ";        break;
+        case Token::NOT_EQ:    out << "NOT_EQ";    break;
         case Token::COMMA:     out << "COMMA";     break;
         case Token::SEMICOLON: out << "SEMICOLON"; break;
         case Token::LPAREN:    out << "LPAREN";    break;
@@ -33,6 +35,11 @@ std::ostream& operator<<(std::ostream &out, Token::TokenType &tokenType) {
         case Token::RBRACE:    out << "RBRACE";    break;
         case Token::FUNCTION:  out << "FUNCTION";  break;
         case Token::LET:       out << "LET";       break;
+        case Token::IF:        out << "IF";        break;
+        case Token::ELSE:      out << "ELSE";      break;
+        case Token::RETURN:    out << "RETURN";    break;
+        case Token::TRUE:      out << "TRUE";      break;
+        case Token::FALSE:     out << "FALSE";     break;
         default:               out << "???";       break;
     }
 

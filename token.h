@@ -20,6 +20,8 @@ public:
         SLASH,
         LT,
         GT,
+        EQ,
+        NOT_EQ,
         COMMA,
         SEMICOLON,
         LPAREN,
@@ -27,7 +29,12 @@ public:
         LBRACE,
         RBRACE,
         FUNCTION,
-        LET
+        LET,
+        IF,
+        ELSE,
+        RETURN,
+        TRUE,
+        FALSE
     };
     struct TokenTest {
         Token::TokenType expectedToken;

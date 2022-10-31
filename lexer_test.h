@@ -10,6 +10,7 @@
 void testNextToken();
 void testNextTokenTwo();
 void testNextTokenThree();
+void testNextTokenFour();
 
 
 
