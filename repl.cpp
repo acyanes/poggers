@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "repl.h"
-#include "lexer.h"
+#include "lexer/lexer.h"
 
 // read, eval, print, loop
 const std::string PROMPT = ">> ";
@@ -21,6 +21,11 @@ void Repl::start() {
         Token tok = l.nextToken();
 
         while(tok.m_tokenType != Token::EF) {
+            if (tok.m_tokenType == Token::ILLEGAL) {
+                std::cout << "ILLEGAL TYPE: ";
+                std::cout << scanner;
+                return;
+            }
             std::cout << "TYPE: ";
             std::cout << tok.m_tokenType;
 

@@ -6,7 +6,7 @@
 #define INTERPRETER_LEXER_H
 
 #include <string>
-#include "token.h"
+#include "../token/token.h"
 class Lexer {
 public:
     std::string m_input{};

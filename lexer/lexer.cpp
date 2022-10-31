@@ -3,7 +3,7 @@
 //
 #include <unordered_map>
 #include <iostream>
-#include "token.h"
+#include "../token/token.h"
 #include "lexer.h"
 
 Lexer::Lexer(std::string input) {

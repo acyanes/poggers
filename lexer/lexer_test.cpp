@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include "lexer.h"
-#include "token.h"
+#include "../token/token.h"
 
 //TODO: get t.expectedToken to print the enum and not just the index
 //      make this into a class later maybe

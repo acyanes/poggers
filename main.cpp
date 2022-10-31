@@ -1,5 +1,5 @@
 #include <iostream>
-#include "lexer_test.h"
+#include "lexer/lexer_test.h"
 #include "repl.h"
 int main() {
     // TODO:move to some sort of test suite
